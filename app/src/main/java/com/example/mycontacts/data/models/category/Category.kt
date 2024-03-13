@@ -2,7 +2,7 @@ package com.example.mycontacts.data.models.category
 
 import com.example.mycontacts.utils.DatabaseManager
 
-class Category (private var id: Int, private var category: String) {
+class Category (var id: Int, var category: String) {
 
     companion object {
         const val TABLE_NAME = "Categories"
