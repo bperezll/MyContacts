@@ -3,10 +3,11 @@ package com.example.mycontacts.utils
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.example.mycontacts.data.models.category.Category
 import com.example.mycontacts.data.models.contact.Contact
 
-class DatabaseManager(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         const val DATABASE_NAME = "my_contacts.db"
@@ -22,7 +23,7 @@ class DatabaseManager(private val context: Context) : SQLiteOpenHelper(context, 
                     "${Contact.COLUMN_NAME_CATEGORY} INTEGER," +
                     "CONSTRAINT fk_category " +
                     "FOREIGN KEY(${Contact.COLUMN_NAME_CATEGORY}) " +
-                    "REFERENCES ${Category.TABLE_NAME}($COLUMN_NAME_ID) " // ON DELETE CASCADE)" De momento sin on delete cascade
+                    "REFERENCES ${Category.TABLE_NAME}($COLUMN_NAME_ID))" // ON DELETE CASCADE)" De momento sin on delete cascade
 
         private const val SQL_DELETE_TABLE_CONTACT = "DROP TABLE IF EXISTS ${Contact.TABLE_NAME}"
 
@@ -42,6 +43,13 @@ class DatabaseManager(private val context: Context) : SQLiteOpenHelper(context, 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_TABLE_CATEGORY)
         db.execSQL(SQL_CREATE_TABLE_CONTACT)
+
+        Category(0, "Family")
+        Category(1, "Friends")
+        Category(2, "Work")
+        Category(3, "Other")
+
+        Log.i("DATABASE", "Table: ${Category.TABLE_NAME} Category: ${Category.COLUMN_NAME_CATEGORY} with ID: $COLUMN_NAME_ID")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
