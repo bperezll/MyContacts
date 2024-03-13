@@ -5,10 +5,12 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.example.mycontacts.data.models.category.Category
+import com.example.mycontacts.data.models.category.CategoryDAO
 import com.example.mycontacts.data.models.contact.Contact
 
 class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
+    private lateinit var categoryDAO: CategoryDAO
     companion object {
         const val DATABASE_NAME = "my_contacts.db"
         const val DATABASE_VERSION = 1
@@ -44,12 +46,12 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
         db.execSQL(SQL_CREATE_TABLE_CATEGORY)
         db.execSQL(SQL_CREATE_TABLE_CONTACT)
 
-        Category(0, "Family")
-        Category(1, "Friends")
-        Category(2, "Work")
-        Category(3, "Other")
+        categoryDAO.insert(Category(0, "Family"))
+        categoryDAO.insert(Category(1, "Friends"))
+        categoryDAO.insert(Category(2, "Work"))
+        categoryDAO.insert(Category(3, "Other"))
 
-        Log.i("DATABASE", "Table: ${Category.TABLE_NAME} Category: ${Category.COLUMN_NAME_CATEGORY} with ID: $COLUMN_NAME_ID")
+        //Log.i("DATABASE", "Table: ${Category.TABLE_NAME} Category: ${Category.COLUMN_NAME_CATEGORY} with ID: $COLUMN_NAME_ID")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
