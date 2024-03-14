@@ -8,13 +8,13 @@ import com.example.mycontacts.R
 import com.example.mycontacts.models.contact.Contact
 import com.example.mycontacts.models.contact.ContactAdapter
 import com.example.mycontacts.models.contact.ContactDAO
-import com.example.mycontacts.databinding.ActivityMainBinding
+import com.example.mycontacts.databinding.ActivityHomeBinding
 import com.example.mycontacts.databinding.DialogAddContactBinding
 import com.example.mycontacts.databinding.DialogDeleteContactBinding
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding // View Binding declaration
+    private lateinit var binding: ActivityHomeBinding // View Binding declaration
     private lateinit var contactAdapter: ContactAdapter // Adapter declaration
     private var contactList:MutableList<Contact> = mutableListOf() // Using Task as a List
     private lateinit var contactDAO: ContactDAO // ContactDao declaration
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // View binding initialization
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
