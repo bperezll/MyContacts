@@ -21,11 +21,12 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
                     "$COLUMN_NAME_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "${Contact.COLUMN_NAME_CONTACT} TEXT," +
                     "${Contact.COLUMN_NAME_PHONE} TEXT," +
-                    "${Contact.COLUMN_NAME_EMAIL} TEXT," +
-                    "${Contact.COLUMN_NAME_CATEGORY} INTEGER," +
-                    "CONSTRAINT fk_category " +
-                    "FOREIGN KEY(${Contact.COLUMN_NAME_CATEGORY}) " +
-                    "REFERENCES ${Category.TABLE_NAME}($COLUMN_NAME_ID))" // ON DELETE CASCADE)" De momento sin on delete cascade
+                    "${Contact.COLUMN_NAME_EMAIL} TEXT)"
+        //+
+                    //"${Contact.COLUMN_NAME_CATEGORY} INTEGER," +
+                    //"CONSTRAINT fk_category " +
+                    //"FOREIGN KEY(${Contact.COLUMN_NAME_CATEGORY}) " +
+                    //"REFERENCES ${Category.TABLE_NAME}($COLUMN_NAME_ID))" // ON DELETE CASCADE)" De momento sin on delete cascade
 
         private const val SQL_DELETE_TABLE_CONTACT = "DROP TABLE IF EXISTS ${Contact.TABLE_NAME}"
 
@@ -46,10 +47,10 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
         db.execSQL(SQL_CREATE_TABLE_CATEGORY)
         db.execSQL(SQL_CREATE_TABLE_CONTACT)
 
-        categoryDAO.insert(Category(0, "Family"))
+        /*categoryDAO.insert(Category(0, "Family"))
         categoryDAO.insert(Category(1, "Friends"))
         categoryDAO.insert(Category(2, "Work"))
-        categoryDAO.insert(Category(3, "Other"))
+        categoryDAO.insert(Category(3, "Other"))*/
 
         //Log.i("DATABASE", "Table: ${Category.TABLE_NAME} Category: ${Category.COLUMN_NAME_CATEGORY} with ID: $COLUMN_NAME_ID")
     }

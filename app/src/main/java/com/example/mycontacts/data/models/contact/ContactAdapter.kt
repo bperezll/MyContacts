@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacts.databinding.ItemContactBinding
 import com.example.mycontacts.databinding.ActivityMainBinding
+import com.example.mycontacts.databinding.DialogAddContactBinding
 
 class ContactAdapter(
-    private var items:MutableList<Contact> = mutableListOf(),
-    private val onClickListener: (position:Int) -> Unit,
-    private val onAddContactListener: (position:Int) -> Unit
+    var items:MutableList<Contact> = mutableListOf(),
+    val onClickListener: (position:Int) -> Unit
+    //val onAddContactListener: (position:Int) -> Unit
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -33,11 +34,14 @@ class ContactAdapter(
         notifyDataSetChanged()
     }
 
-    class ContactViewHolder(val binding:ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ContactViewHolder(val binding:ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun render(contact: Contact) {
-            //binding.nameTextView.text = task.task
+            //ItemContactBinding.contactNameEditText = contact.name
             //binding.doneCheckBox.isChecked = task.done
+            binding.contactName.text = contact.name
+            binding.contactPhone.text = contact.phone
+            binding.contactEmail.text = contact.email
         }
     }
 }

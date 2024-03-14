@@ -18,7 +18,7 @@ class ContactDAO (val context: Context) {
         values.put(Contact.COLUMN_NAME_CONTACT, contact.name)
         values.put(Contact.COLUMN_NAME_PHONE, contact.phone)
         values.put(Contact.COLUMN_NAME_EMAIL, contact.email)
-        values.put(Contact.COLUMN_NAME_CATEGORY, contact.category.id)
+        //values.put(Contact.COLUMN_NAME_CATEGORY, contact.category.id)
 
         val newRowId = db.insert(Contact.TABLE_NAME, null, values)
         Log.i("DATABASE", "New record id: $newRowId")
@@ -36,7 +36,7 @@ class ContactDAO (val context: Context) {
         values.put(Contact.COLUMN_NAME_CONTACT, contact.name)
         values.put(Contact.COLUMN_NAME_PHONE, contact.phone)
         values.put(Contact.COLUMN_NAME_EMAIL, contact.email)
-        values.put(Contact.COLUMN_NAME_CATEGORY, contact.category.id)
+        //values.put(Contact.COLUMN_NAME_CATEGORY, contact.category.id)
 
         val updatedRows = db.update(Contact.TABLE_NAME, values, "${DatabaseManager.COLUMN_NAME_ID} = ${contact.id}", null)
         Log.i("DATABASE", "Updated records: $updatedRows")
@@ -74,11 +74,11 @@ class ContactDAO (val context: Context) {
             val contactName = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
             val phone = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
             val email = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
-            val categoryId = cursor.getInt(cursor.getColumnIndex(Contact.COLUMN_NAME_CATEGORY))
+            //val categoryId = cursor.getInt(cursor.getColumnIndex(Contact.COLUMN_NAME_CATEGORY))
             //Log.i("DATABASE", "$id -> Task: $taskName, Done: $done")
 
-            val category = CategoryDAO(context).find(categoryId)!!
-            contact = Contact(contactId, contactName, phone, email, category)
+            //val category = CategoryDAO(context).find(categoryId)!!
+            contact = Contact(contactId, contactName, phone, email)
         }
 
         cursor.close()
@@ -108,11 +108,11 @@ class ContactDAO (val context: Context) {
             val contactName = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
             val phone = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
             val email = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
-            val categoryId = cursor.getInt(cursor.getColumnIndex(Contact.COLUMN_NAME_CATEGORY))
+            //val categoryId = cursor.getInt(cursor.getColumnIndex(Contact.COLUMN_NAME_CATEGORY))
             //Log.i("DATABASE", "$id -> Task: $taskName, Done: $done")
 
-            val category = CategoryDAO(context).find(categoryId)!!
-            val contact = Contact(contactId, contactName, phone, email, category)
+            //val category = CategoryDAO(context).find(categoryId)!!
+            val contact = Contact(contactId, contactName, phone, email)
             list.add(contact)
         }
 
