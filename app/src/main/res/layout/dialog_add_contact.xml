@@ -22,7 +22,7 @@
             android:id="@+id/contactNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapWords"
             app:endIconMode="clear_text"
             tools:text="Pepito"/>
 

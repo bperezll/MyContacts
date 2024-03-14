@@ -98,7 +98,7 @@ class ContactDAO (val context: Context) {
             null,          // The values for the WHERE clause
             null,                   // don't group the rows
             null,                   // don't filter by row groups
-            null //"${Contact.COLUMN_NAME_DONE} ASC"               // The sort order
+            "${Contact.COLUMN_NAME_CONTACT} GLOB '[A-Za-z]*' DESC, ${Contact.COLUMN_NAME_CONTACT}" // Sort alphabetically
         )
 
         val list: MutableList<Contact> = mutableListOf()
