@@ -2,15 +2,15 @@ package com.example.mycontacts.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycontacts.R
-import com.example.mycontacts.data.models.contact.Contact
-import com.example.mycontacts.data.models.contact.ContactAdapter
-import com.example.mycontacts.data.models.contact.ContactDAO
+import com.example.mycontacts.models.contact.Contact
+import com.example.mycontacts.models.contact.ContactAdapter
+import com.example.mycontacts.models.contact.ContactDAO
 import com.example.mycontacts.databinding.ActivityMainBinding
 import com.example.mycontacts.databinding.DialogAddContactBinding
+import com.example.mycontacts.databinding.DialogDeleteContactBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var contactAdapter: ContactAdapter // Adapter declaration
     private var contactList:MutableList<Contact> = mutableListOf() // Using Task as a List
     private lateinit var contactDAO: ContactDAO // ContactDao declaration
-    //private var position: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +29,19 @@ class MainActivity : AppCompatActivity() {
 
         // ContactAdapter initialization
         contactAdapter = ContactAdapter(contactList) {
-            contactAdapter.onClickListener(it)
+            onDeleteItemListener(it)
         }
 
         // ContactDao initialization
         contactDAO = ContactDAO(this)
 
+        // Display contacts on a linear layout
         binding.contactsRecyclerView.adapter = contactAdapter
         binding.contactsRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        //// Make function to load de data
+        contactList = contactDAO.findAll()
+        contactAdapter.updateItems(contactList)
 
         // FAB button start alert dialog to add contact
         binding.addContactFAB.setOnClickListener {
@@ -53,12 +57,6 @@ class MainActivity : AppCompatActivity() {
 
             // Add contact button
             addContactDialog.setPositiveButton(R.string.add_contact, null)
-            /*addContactDialog.setPositiveButton(R.string.add_contact) { _, _ ->
-                // Actions to delete the task
-                val contact = contactList[position]
-                contactDAO.insert(contact)
-                contactAdapter.notifyDataSetChanged()
-            }*/
 
             // Cancel button
             addContactDialog.setNegativeButton(android.R.string.cancel) { dialog, _ ->
@@ -77,8 +75,11 @@ class MainActivity : AppCompatActivity() {
                 val contactPhone = addContactBinding.contactPhoneEditText.editableText.toString()
                 val contactEmail = addContactBinding.contactEmailEditText.editableText.toString()
 
+                //// Controlling that any of the fields are not empty (Not functional at all)
+                //if (contactName.isNotEmpty() || contactPhone.isNotEmpty() || contactEmail.isNotEmpty()) {
+                if (contactName.isNotEmpty()) {
 
-                if (contactName.isNotEmpty() || contactPhone.isNotEmpty() || contactEmail.isNotEmpty()) {
+                    // Add any of the fields added
                     val contact = Contact(-1, contactName, contactPhone, contactEmail)
                     contactDAO.insert(contact)
 
@@ -89,10 +90,38 @@ class MainActivity : AppCompatActivity() {
 
                     //Toast.makeText(this, R.string.add_task_success_message, Toast.LENGTH_SHORT).show()
                     alertDialog.dismiss()
-                /*} else {
-                    addContactBinding.taskTextField.error = getString(R.string.add_task_empty_error)*/
+                } else {
+                    addContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
                 }
             }
         }
+    }
+
+    // Remove a contact with the delete button
+    private fun onDeleteItemListener(position:Int) {
+
+        // Remove contact dialog creation
+        val askForDeleteDialog: AlertDialog.Builder = AlertDialog.Builder(this)
+        val deleteMessageBinding: DialogDeleteContactBinding = DialogDeleteContactBinding.inflate(layoutInflater)
+        askForDeleteDialog.setView(deleteMessageBinding.root)
+
+        // Remove contact button
+        askForDeleteDialog.setPositiveButton(R.string.remove_contact) { _, _ ->
+
+            // Actions to delete the contact
+            val contact = contactList[position]
+            contactDAO.delete(contact)
+            contactList.removeAt(position)
+            contactAdapter.notifyDataSetChanged()
+        }
+
+        // Cancel button
+        askForDeleteDialog.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        // Showing the dialog on pressing the trash icon
+        val alertDialog: AlertDialog = askForDeleteDialog.create()
+        alertDialog.show()
     }
 }

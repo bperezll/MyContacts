@@ -1,10 +1,10 @@
-package com.example.mycontacts.data.models.contact
+package com.example.mycontacts.models.contact
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.util.Log
-import com.example.mycontacts.data.models.category.CategoryDAO
+import com.example.mycontacts.models.category.CategoryDAO
 import com.example.mycontacts.utils.DatabaseManager
 
 class ContactDAO (val context: Context) {
@@ -72,8 +72,8 @@ class ContactDAO (val context: Context) {
         if (cursor.moveToNext()) {
             val contactId = cursor.getInt(cursor.getColumnIndex(DatabaseManager.COLUMN_NAME_ID))
             val contactName = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
-            val phone = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
-            val email = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
+            val phone = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_PHONE))
+            val email = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_EMAIL))
             //val categoryId = cursor.getInt(cursor.getColumnIndex(Contact.COLUMN_NAME_CATEGORY))
             //Log.i("DATABASE", "$id -> Task: $taskName, Done: $done")
 
@@ -106,8 +106,8 @@ class ContactDAO (val context: Context) {
         while (cursor.moveToNext()) {
             val contactId = cursor.getInt(cursor.getColumnIndex(DatabaseManager.COLUMN_NAME_ID))
             val contactName = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
-            val phone = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
-            val email = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_CONTACT))
+            val phone = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_PHONE))
+            val email = cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME_EMAIL))
             //val categoryId = cursor.getInt(cursor.getColumnIndex(Contact.COLUMN_NAME_CATEGORY))
             //Log.i("DATABASE", "$id -> Task: $taskName, Done: $done")
 

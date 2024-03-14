@@ -1,4 +1,4 @@
-package com.example.mycontacts.data.models.category
+package com.example.mycontacts.models.category
 
 import android.annotation.SuppressLint
 import android.content.ContentValues

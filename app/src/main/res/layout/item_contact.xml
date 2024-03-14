@@ -43,6 +43,16 @@
                 app:layout_constraintTop_toBottomOf="@id/contactPhone"
                 android:textColor="@color/white"/>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deleteContactButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_delete"
+                app:backgroundTint="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/innerConstraint"
+                app:layout_constraintTop_toTopOf="@id/innerConstraint"
+                app:layout_constraintBottom_toBottomOf="@id/innerConstraint"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

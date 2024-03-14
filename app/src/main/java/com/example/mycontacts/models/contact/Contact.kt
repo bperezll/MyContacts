@@ -1,6 +1,6 @@
-package com.example.mycontacts.data.models.contact
+package com.example.mycontacts.models.contact
 
-import com.example.mycontacts.data.models.category.Category
+import com.example.mycontacts.models.category.Category
 import com.example.mycontacts.utils.DatabaseManager
 
 class Contact (var id: Int, var name: String, var phone: String, var email: String, /*var category: Category*/) {

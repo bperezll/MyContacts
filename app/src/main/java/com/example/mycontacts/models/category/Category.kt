@@ -1,4 +1,4 @@
-package com.example.mycontacts.data.models.category
+package com.example.mycontacts.models.category
 
 import com.example.mycontacts.utils.DatabaseManager
 

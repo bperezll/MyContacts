@@ -4,9 +4,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.example.mycontacts.data.models.category.Category
-import com.example.mycontacts.data.models.category.CategoryDAO
-import com.example.mycontacts.data.models.contact.Contact
+import com.example.mycontacts.models.category.Category
+import com.example.mycontacts.models.category.CategoryDAO
+import com.example.mycontacts.models.contact.Contact
 
 class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 

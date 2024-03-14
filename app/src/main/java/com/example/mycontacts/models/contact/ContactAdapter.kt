@@ -1,15 +1,13 @@
-package com.example.mycontacts.data.models.contact
+package com.example.mycontacts.models.contact
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacts.databinding.ItemContactBinding
-import com.example.mycontacts.databinding.ActivityMainBinding
-import com.example.mycontacts.databinding.DialogAddContactBinding
 
 class ContactAdapter(
     var items:MutableList<Contact> = mutableListOf(),
-    val onClickListener: (position:Int) -> Unit
+    val onDeleteItemListener: (position:Int) -> Unit
     //val onAddContactListener: (position:Int) -> Unit
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
@@ -23,7 +21,7 @@ class ContactAdapter(
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.render(items[position])
-        holder.itemView.setOnClickListener { onClickListener(position) }
+        holder.binding.deleteContactButton.setOnClickListener { onDeleteItemListener(position) }
         /*holder.binding.setOnClickListener {
             onAddContactListener(position)
         }*/
