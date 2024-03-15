@@ -3,6 +3,9 @@ package com.example.mycontacts.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycontacts.R
@@ -19,6 +22,30 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var contactAdapter: ContactAdapter // Adapter declaration
     private var contactList:MutableList<Contact> = mutableListOf() // Using Task as a List
     private lateinit var contactDAO: ContactDAO // ContactDao declaration
+
+    // Showing the custom Home Menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
+    // Button Settings make intent to Settings Activity
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        // Handle item selection.
+        return when (item.itemId) {
+            R.id.btnSettings -> {
+
+                // Intent to go to Settings Activity
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
