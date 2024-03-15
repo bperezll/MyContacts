@@ -1,4 +1,4 @@
-package com.example.mycontacts.activities
+package com.example.mycontacts.activities.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,11 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycontacts.R
+import com.example.mycontacts.activities.ContactDetailActivity
+import com.example.mycontacts.activities.SettingsActivity
 import com.example.mycontacts.models.contact.Contact
 import com.example.mycontacts.models.contact.ContactAdapter
 import com.example.mycontacts.models.contact.ContactDAO
@@ -72,6 +75,25 @@ class HomeActivity : AppCompatActivity() {
         //// Make function to load de data
         contactList = contactDAO.findAll()
         contactAdapter.updateItems(contactList)
+
+        // Search contacts as you type
+        binding.contactSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean { return false }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                contactList = if (newText.isNullOrEmpty()) {
+                    contactDAO.findAll().toMutableList()
+                } else {
+                    contactDAO.findAll().filter { contact -> (contact.name).contains(newText, true) }.toMutableList()
+                }
+
+                // Update the list to all if empty, or to the ones containing the query
+                contactAdapter.updateItems(contactList)
+                return true
+            }
+        })
 
         // FAB button start alert dialog to add contact
         binding.addContactFAB.setOnClickListener {
