@@ -4,11 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.mycontacts.databinding.ActivitySettingsBinding
+import com.example.mycontacts.utils.SessionManager
 
 
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding // View Binding declaration
+    private lateinit var session: SessionManager // Session Manager declaration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -16,6 +19,9 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        // Session Manager initialization
+        session = SessionManager(this)
 
         // Switch to Mode Night when switch theme is checked
         binding.switchTheme.setOnCheckedChangeListener { _, _ ->

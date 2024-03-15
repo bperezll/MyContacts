@@ -2,12 +2,13 @@ package com.example.mycontacts.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 
 // Study how to add the Settings Theme Switch as Shared Preference
 class SessionManager (context: Context) {
 
     companion object {
-        const val FAVORITE_HOROSCOPE = "FAVORITE_HOROSCOPE"
+        const val THEME_SWITCH = "THEME_SWITCH"
     }
 
     private var sharedPref: SharedPreferences? = null
@@ -16,15 +17,16 @@ class SessionManager (context: Context) {
         sharedPref = context.getSharedPreferences("my_session", Context.MODE_PRIVATE)
     }
 
-    fun setFavoriteHoroscope (id:String) {
-        val editor = sharedPref?.edit()
-        if (editor != null) {
-            editor.putString(FAVORITE_HOROSCOPE, id)
-            editor.apply()
+    fun setTheme (isChecked: Boolean) {
+        val themeSwitch = sharedPref?.edit()
+        if (themeSwitch != null) {
+            ////themeSwitch.putBoolean().AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            ////themeSwitch.putString(THEME_SWITCH, isChecked)
+            themeSwitch.apply()
         }
     }
 
-    fun getFavoriteHoroscope ():String? {
-        return sharedPref?.getString(FAVORITE_HOROSCOPE, null)
+    fun getTheme ():String? {
+        return sharedPref?.getString(THEME_SWITCH, null)
     }
 }
