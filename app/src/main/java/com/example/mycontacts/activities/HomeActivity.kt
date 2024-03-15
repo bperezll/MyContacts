@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
     // Button Settings make intent to Settings Activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        // Handle item selection.
+        // Handle item selection
         return when (item.itemId) {
             R.id.btnSettings -> {
 
