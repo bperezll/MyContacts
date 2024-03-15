@@ -52,6 +52,11 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
     private fun findContactById(contactId: String) {
+
+
+        binding.nameTextView.text = contact.name
+        binding.phoneTextView.text = contact.phone
+        binding.emailTextView.text = contact.email
         //// Load the fields and options on the contact detail page. On development
         //binding.progress.visibility = View.GONE
         /*if (response.body() != null) {
