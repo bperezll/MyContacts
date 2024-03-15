@@ -1,5 +1,6 @@
 package com.example.mycontacts.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -28,9 +29,11 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
 
         // ContactAdapter initialization
-        contactAdapter = ContactAdapter(contactList) {
+        contactAdapter = ContactAdapter(contactList, {
             onDeleteItemListener(it)
-        }
+        }, {
+            onItemClickListener(it)
+        })
 
         // ContactDao initialization
         contactDAO = ContactDAO(this)
@@ -123,5 +126,19 @@ class HomeActivity : AppCompatActivity() {
         // Showing the dialog on pressing the trash icon
         val alertDialog: AlertDialog = askForDeleteDialog.create()
         alertDialog.show()
+    }
+
+    private fun onItemClickListener(position: Int) {
+
+        // Assign to contact value the position on the list
+        val contact: Contact = contactList[position]
+
+        // Intent with elements displayed on Contact Detail Activity
+        val intent = Intent(this, ContactDetailActivity::class.java)
+        intent.putExtra("CONTACT_ID", contact.id)
+        intent.putExtra("CONTACT_NAME", contact.name)
+        intent.putExtra("CONTACT_PHONE", contact.phone)
+        intent.putExtra("CONTACT_EMAIL", contact.email)
+        startActivity(intent)
     }
 }

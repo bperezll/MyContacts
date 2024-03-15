@@ -7,8 +7,8 @@ import com.example.mycontacts.databinding.ItemContactBinding
 
 class ContactAdapter(
     var items:MutableList<Contact> = mutableListOf(),
-    val onDeleteItemListener: (position:Int) -> Unit
-    //val onAddContactListener: (position:Int) -> Unit
+    val onDeleteItemListener: (position:Int) -> Unit,
+    val onItemClickListener: (position:Int) -> Unit
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -22,9 +22,9 @@ class ContactAdapter(
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.render(items[position])
         holder.binding.deleteContactButton.setOnClickListener { onDeleteItemListener(position) }
-        /*holder.binding.setOnClickListener {
-            onAddContactListener(position)
-        }*/
+        holder.binding.contactFieldsCardView.setOnClickListener {
+            onItemClickListener(position)
+        }
     }
 
     fun updateItems(results: MutableList<Contact>) {

@@ -7,6 +7,8 @@ import com.example.mycontacts.R
 import com.example.mycontacts.databinding.ActivityContactDetailBinding
 import com.example.mycontacts.databinding.ActivityHomeBinding
 import com.example.mycontacts.models.contact.Contact
+import com.example.mycontacts.models.contact.Contact.Companion.COLUMN_NAMES
+import com.example.mycontacts.models.contact.ContactDAO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,23 +42,35 @@ class ContactDetailActivity : AppCompatActivity() {
         // Get the ID of the contact, only intent needed
         contactId = intent.getStringExtra(EXTRA_ID)
 
+        //contact = Contact(contactId!!.toInt(), contact.name, contact.phone, contact.email)
+
+        //val contactDAO = ContactDAO(this)
+        //contact = contactDAO.find(contactId!!.toInt())!!
+
+        //horoscope = HoroscopeProvider().getHoroscope(horoscopeId!!)
+        //contact = mutableListOf(Contact).[contactId!!]
+
         // Display contact fields
         val name = intent.getStringExtra(EXTRA_NAME)
         val phone = intent.getStringExtra(EXTRA_PHONE)
         val email = intent.getStringExtra(EXTRA_EMAIL)
 
-        ////binding.superheroNameTextView.text = name
+        binding.nameTextView.text = name
+        binding.phoneTextView.text = phone
+        binding.emailTextView.text = email
 
-        findContactById(contactId!!)
+        //contact = Contact(contactId!!, name, phone, email)
+
+        //findContactById(contactId!!)
 
     }
 
     private fun findContactById(contactId: String) {
 
 
-        binding.nameTextView.text = contact.name
-        binding.phoneTextView.text = contact.phone
-        binding.emailTextView.text = contact.email
+        ////binding.nameTextView.text = contact.name
+        ////binding.phoneTextView.text = contact.phone
+        ////binding.emailTextView.text = contact.email
         //// Load the fields and options on the contact detail page. On development
         //binding.progress.visibility = View.GONE
         /*if (response.body() != null) {
