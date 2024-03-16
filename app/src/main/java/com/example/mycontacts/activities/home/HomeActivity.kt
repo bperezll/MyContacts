@@ -1,23 +1,25 @@
 package com.example.mycontacts.activities.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycontacts.R
 import com.example.mycontacts.activities.ContactDetailActivity
 import com.example.mycontacts.activities.SettingsActivity
-import com.example.mycontacts.models.contact.Contact
-import com.example.mycontacts.models.contact.ContactAdapter
-import com.example.mycontacts.models.contact.ContactDAO
 import com.example.mycontacts.databinding.ActivityHomeBinding
 import com.example.mycontacts.databinding.DialogAddContactBinding
 import com.example.mycontacts.databinding.DialogDeleteContactBinding
+import com.example.mycontacts.models.contact.Contact
+import com.example.mycontacts.models.contact.ContactAdapter
+import com.example.mycontacts.models.contact.ContactDAO
+import com.example.mycontacts.shared.SharedFunctions
+import com.example.mycontacts.utils.SessionManager
 
 class HomeActivity : AppCompatActivity() {
 
@@ -25,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var contactAdapter: ContactAdapter // Adapter declaration
     private var contactList:MutableList<Contact> = mutableListOf() // Using Task as a List
     private lateinit var contactDAO: ContactDAO // ContactDao declaration
+    private lateinit var session: SessionManager // Session Manager declaration
 
     // Showing the custom Home Menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,6 +60,12 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        // Session Manager initialization
+        session = SessionManager(this)
+
+        // Apply the saved theme
+        SharedFunctions().applyTheme(session.theme)
 
         // ContactAdapter initialization
         contactAdapter = ContactAdapter(contactList, {
