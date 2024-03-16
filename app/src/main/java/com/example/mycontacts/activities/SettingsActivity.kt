@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.mycontacts.databinding.ActivitySettingsBinding
+import com.example.mycontacts.shared.SharedFunctions
 import com.example.mycontacts.utils.SessionManager
 
 
@@ -23,13 +24,16 @@ class SettingsActivity : AppCompatActivity() {
         // Session Manager initialization
         session = SessionManager(this)
 
-        // Switch to Mode Night when switch theme is checked
-        binding.switchTheme.setOnCheckedChangeListener { _, _ ->
-            if (binding.switchTheme.isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
+        setupThemeSwitch()
+    }
+
+    // Switching the theme
+    private fun setupThemeSwitch() {
+        binding.switchTheme.isChecked = session.theme
+
+        binding.switchTheme.setOnCheckedChangeListener { _, isChecked ->
+            session.theme = isChecked
+            SharedFunctions().applyTheme(isChecked)
         }
     }
 }
