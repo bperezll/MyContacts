@@ -1,23 +1,23 @@
 package com.example.mycontacts.activities.home
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycontacts.R
 import com.example.mycontacts.activities.ContactDetailActivity
 import com.example.mycontacts.activities.SettingsActivity
-import com.example.mycontacts.databinding.ActivityHomeBinding
-import com.example.mycontacts.databinding.DialogAddContactBinding
-import com.example.mycontacts.databinding.DialogDeleteContactBinding
 import com.example.mycontacts.models.contact.Contact
 import com.example.mycontacts.models.contact.ContactAdapter
 import com.example.mycontacts.models.contact.ContactDAO
+import com.example.mycontacts.databinding.ActivityHomeBinding
+import com.example.mycontacts.databinding.DialogAddContactBinding
+import com.example.mycontacts.databinding.DialogDeleteContactBinding
 import com.example.mycontacts.shared.SharedFunctions
 import com.example.mycontacts.utils.SessionManager
 
