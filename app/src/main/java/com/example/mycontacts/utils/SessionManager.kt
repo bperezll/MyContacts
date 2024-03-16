@@ -1,32 +1,19 @@
 package com.example.mycontacts.utils
 
+// SessionManager.kt
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatDelegate
 
-// Study how to add the Settings Theme Switch as Shared Preference
-class SessionManager (context: Context) {
-
+class SessionManager(context: Context) {
     companion object {
-        const val THEME_SWITCH = "THEME_SWITCH"
+        private const val PREF_NAME = "session_pref"
+        private const val KEY_THEME = "theme"
     }
 
-    private var sharedPref: SharedPreferences? = null
+    private val sharedPref: SharedPreferences =
+        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
-    init {
-        sharedPref = context.getSharedPreferences("my_session", Context.MODE_PRIVATE)
-    }
-
-    fun setTheme (isChecked: Boolean) {
-        val themeSwitch = sharedPref?.edit()
-        if (themeSwitch != null) {
-            ////themeSwitch.putBoolean().AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            ////themeSwitch.putString(THEME_SWITCH, isChecked)
-            themeSwitch.apply()
-        }
-    }
-
-    fun getTheme ():String? {
-        return sharedPref?.getString(THEME_SWITCH, null)
-    }
+    var theme: Boolean
+        get() = sharedPref.getBoolean(KEY_THEME, false)
+        set(value) = sharedPref.edit().putBoolean(KEY_THEME, value).apply()
 }
