@@ -56,6 +56,10 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        onCreateInitView()
+    }
+
+    private fun onCreateInitView() {
         // View binding initialization
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
@@ -85,7 +89,12 @@ class HomeActivity : AppCompatActivity() {
         contactList = contactDAO.findAll()
         contactAdapter.updateItems(contactList)
 
-        // Search contacts as you type
+        searchContact()
+        addContactDialog()
+    }
+
+    // Search contacts as you type
+    private fun searchContact() {
         binding.contactSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean { return false }
@@ -103,8 +112,11 @@ class HomeActivity : AppCompatActivity() {
                 return true
             }
         })
+    }
 
-        // FAB button start alert dialog to add contact
+    // FAB button start alert dialog to add contact
+    private fun addContactDialog() {
+
         binding.addContactFAB.setOnClickListener {
 
             // Add contact dialog creation
