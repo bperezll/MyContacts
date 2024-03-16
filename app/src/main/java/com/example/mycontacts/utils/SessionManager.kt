@@ -1,6 +1,5 @@
 package com.example.mycontacts.utils
 
-// SessionManager.kt
 import android.content.Context
 import android.content.SharedPreferences
 
