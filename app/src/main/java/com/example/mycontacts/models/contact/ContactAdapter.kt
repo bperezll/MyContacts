@@ -1,7 +1,9 @@
 package com.example.mycontacts.models.contact
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacts.databinding.ItemContactBinding
 
@@ -35,8 +37,6 @@ class ContactAdapter(
     inner class ContactViewHolder(val binding:ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun render(contact: Contact) {
-            //ItemContactBinding.contactNameEditText = contact.name
-            //binding.doneCheckBox.isChecked = task.done
             binding.contactName.text = contact.name
             binding.contactPhone.text = contact.phone
             binding.contactEmail.text = contact.email
