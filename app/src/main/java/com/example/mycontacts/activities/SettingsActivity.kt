@@ -2,7 +2,6 @@ package com.example.mycontacts.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.mycontacts.databinding.ActivitySettingsBinding
 import com.example.mycontacts.shared.SharedFunctions
 import com.example.mycontacts.utils.SessionManager
