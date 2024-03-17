@@ -7,6 +7,8 @@ import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacts.databinding.ItemContactBinding
 
+//////////////// Add button to edit contact!!!!!!!
+
 class ContactAdapter(
     var items:MutableList<Contact> = mutableListOf(),
     val onDeleteItemListener: (position:Int) -> Unit,
