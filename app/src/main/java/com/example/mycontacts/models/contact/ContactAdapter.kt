@@ -27,7 +27,7 @@ class ContactAdapter(
         holder.render(items[position])
         holder.binding.deleteContactButton.setOnClickListener { onDeleteItemListener(position) }
         holder.binding.editContactButton.setOnClickListener { onEditContactClickListener(position) }
-        holder.binding.contactFieldsCardView.setOnClickListener { onItemClickListener(position) }
+        holder.binding.itemContactConstraint.setOnClickListener { onItemClickListener(position) }
     }
 
     fun updateItems(results: MutableList<Contact>) {
