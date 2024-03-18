@@ -1,13 +1,9 @@
 package com.example.mycontacts.models.contact
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacts.databinding.ItemContactBinding
-
-//////////////// Add button to edit contact!!!!!!!
 
 class ContactAdapter(
     var items:MutableList<Contact> = mutableListOf(),
