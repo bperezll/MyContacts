@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacts.databinding.ItemContactBinding
 
 class ContactAdapter(
-    var items:MutableList<Contact> = mutableListOf(),
-    val onDeleteItemListener: (position:Int) -> Unit,
-    val onItemClickListener: (position:Int) -> Unit,
-    val onEditContactClickListener: (position:Int) -> Unit
+    var items: MutableList<Contact> = mutableListOf(),
+    val onDeleteItemListener: (position: Int) -> Unit,
+    val onItemClickListener: (position: Int) -> Unit,
+    val onEditContactClickListener: (position: Int) -> Unit,
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -36,7 +36,12 @@ class ContactAdapter(
         fun render(contact: Contact) {
             binding.contactName.text = contact.name
             binding.contactPhone.text = contact.phone
-            binding.contactEmail.text = contact.email
+
+            // Get first char of the first and the second word if any
+            val firstNameInitial = contact.name.firstOrNull()?.toString() ?: ""
+            val secondNameInitial = contact.name.split(" ").getOrNull(1)?.firstOrNull()?.toString() ?: ""
+            val initials = "$firstNameInitial$secondNameInitial"
+            binding.nameInitials.text = initials
         }
     }
 }
