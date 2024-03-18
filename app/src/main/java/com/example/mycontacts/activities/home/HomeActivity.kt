@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -76,6 +77,8 @@ class HomeActivity : AppCompatActivity() {
             onDeleteItemListener(it)
         }, {
             onItemClickListener(it)
+        }, {
+            onEditContactClickListener(it)
         })
 
         // ContactDao initialization
@@ -148,23 +151,73 @@ class HomeActivity : AppCompatActivity() {
                 val contactPhone = addContactBinding.contactPhoneEditText.editableText.toString()
                 val contactEmail = addContactBinding.contactEmailEditText.editableText.toString()
 
-                //// Controlling that any of the fields are not empty (Not functional at all)
-                //if (contactName.isNotEmpty() || contactPhone.isNotEmpty() || contactEmail.isNotEmpty()) {
-                if (contactName.isNotEmpty()) {
+                // Controlling that name and phone fields are not empty
+                if (contactName.isNotEmpty() && contactPhone.isNotEmpty()) {
 
                     // Add any of the fields added
                     val contact = Contact(-1, contactName, contactPhone, contactEmail)
                     contactDAO.insert(contact)
 
                     // Loading the data
-                    //loadData()
                     contactList = contactDAO.findAll()
                     contactAdapter.updateItems(contactList)
 
-                    //Toast.makeText(this, R.string.add_task_success_message, Toast.LENGTH_SHORT).show()
                     alertDialog.dismiss()
+
                 } else {
-                    addContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
+                    if(contactName.isEmpty())
+                        addContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
+                    if(contactPhone.isEmpty())
+                        addContactBinding.contactPhoneEditText.error = getString(R.string.contact_phone_error)
+                }
+            }
+        }
+    }
+
+    // Dialog to edit a contact
+    private fun onEditContactClickListener(position: Int) {
+        val contact: Contact = contactList[position]
+
+        val editContactDialog: AlertDialog.Builder = AlertDialog.Builder(this)
+        val editContactBinding: DialogAddContactBinding = DialogAddContactBinding.inflate(layoutInflater)
+        editContactDialog.setView(editContactBinding.root)
+
+        editContactBinding.contactNameEditText.setText(contact.name)
+        editContactBinding.contactPhoneEditText.setText(contact.phone)
+        editContactBinding.contactEmailEditText.setText(contact.email)
+
+        editContactDialog.setTitle(R.string.edit_contact)
+        editContactDialog.setIcon(R.drawable.ic_add_contact)
+        editContactDialog.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+            dialog.dismiss()
+        }
+        editContactDialog.setPositiveButton(R.string.edit_contact_positive, null)
+
+        val alertDialog: AlertDialog = editContactDialog.create()
+        alertDialog.show()
+
+        // Need to move listener after show dialog to prevent dismiss
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+
+            val contactName = editContactBinding.contactNameEditText.text.toString()
+            val contactPhone = editContactBinding.contactPhoneEditText.text.toString()
+            val contactEmail = editContactBinding.contactEmailEditText.text.toString()
+
+            if (contactName.isNotEmpty() && contactPhone.isNotEmpty()) {
+                contact.name = contactName
+                contact.phone = contactPhone
+                contact.email = contactEmail
+
+                contactDAO.update(contact)
+                contactAdapter.notifyItemChanged(position)
+                alertDialog.dismiss()
+
+            } else {
+                if(contactName.isEmpty()) {
+                    editContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
+                }
+                if(contactPhone.isEmpty()) {
+                    editContactBinding.contactPhoneEditText.error = getString(R.string.contact_phone_error)
                 }
             }
         }

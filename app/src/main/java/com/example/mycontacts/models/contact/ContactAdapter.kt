@@ -12,12 +12,12 @@ import com.example.mycontacts.databinding.ItemContactBinding
 class ContactAdapter(
     var items:MutableList<Contact> = mutableListOf(),
     val onDeleteItemListener: (position:Int) -> Unit,
-    val onItemClickListener: (position:Int) -> Unit
+    val onItemClickListener: (position:Int) -> Unit,
+    val onEditContactClickListener: (position:Int) -> Unit
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val binding = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        //val mainBinding = ActivityMainBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ContactViewHolder(binding)
     }
 
@@ -26,9 +26,8 @@ class ContactAdapter(
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.render(items[position])
         holder.binding.deleteContactButton.setOnClickListener { onDeleteItemListener(position) }
-        holder.binding.contactFieldsCardView.setOnClickListener {
-            onItemClickListener(position)
-        }
+        holder.binding.editContactButton.setOnClickListener { onEditContactClickListener(position) }
+        holder.binding.contactFieldsCardView.setOnClickListener { onItemClickListener(position) }
     }
 
     fun updateItems(results: MutableList<Contact>) {
