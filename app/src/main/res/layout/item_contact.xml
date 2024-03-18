@@ -10,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#DCDCDC"
+        android:background="@color/light_grey"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -24,7 +24,7 @@
         android:paddingTop="8dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#727272" />
+        android:textColor="@color/my_black" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/contactPhone"
@@ -34,7 +34,7 @@
         android:paddingBottom="4dp"
         app:layout_constraintTop_toBottomOf="@id/contactName"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#727272"/>
+        android:textColor="@color/my_black"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/contactEmail"
@@ -44,14 +44,14 @@
         android:paddingBottom="8dp"
         app:layout_constraintTop_toBottomOf="@id/contactPhone"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#727272"/>
+        android:textColor="@color/my_black"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/editContactButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/ic_edit_contact"
-        app:backgroundTint="#DCDCDC"
+        app:backgroundTint="@color/light_grey"
         android:contentDescription="@string/edit_contact"
         app:layout_constraintEnd_toStartOf="@id/deleteContactButton"
         app:layout_constraintTop_toTopOf="@id/contactName"
@@ -62,7 +62,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/ic_delete"
-        app:backgroundTint="#DCDCDC"
+        app:backgroundTint="@color/light_grey"
         android:contentDescription="@string/remove_contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/contactName"
