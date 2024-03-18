@@ -19,7 +19,7 @@
             android:name=".activities.ContactDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.home.HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

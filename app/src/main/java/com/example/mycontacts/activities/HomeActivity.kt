@@ -1,4 +1,4 @@
-package com.example.mycontacts.activities.home
+package com.example.mycontacts.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,13 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycontacts.R
-import com.example.mycontacts.activities.ContactDetailActivity
-import com.example.mycontacts.activities.SettingsActivity
 import com.example.mycontacts.models.contact.Contact
 import com.example.mycontacts.models.contact.ContactAdapter
 import com.example.mycontacts.models.contact.ContactDAO
