@@ -199,7 +199,7 @@ class HomeActivity : AppCompatActivity() {
         editContactBinding.contactEmailEditText.setText(contact.email)
 
         editContactDialog.setTitle(R.string.edit_contact)
-        editContactDialog.setIcon(R.drawable.ic_add_contact)
+        editContactDialog.setIcon(R.drawable.ic_edit_contact)
         editContactDialog.setNegativeButton(android.R.string.cancel) { dialog, _ ->
             dialog.dismiss()
         }
@@ -249,6 +249,7 @@ class HomeActivity : AppCompatActivity() {
         askForDeleteDialog.setView(deleteMessageBinding.root)
 
         askForDeleteDialog.setTitle(R.string.remove_contact_title)
+        askForDeleteDialog.setIcon(R.drawable.ic_delete_contact)
 
         // Remove contact button
         askForDeleteDialog.setPositiveButton(R.string.remove_contact) { _, _ ->
@@ -288,13 +289,4 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra("CONTACT_EMAIL", contact.email)
         startActivity(intent)
     }
-
-    /*override fun onResume() {
-        super.onResume()
-
-        // If contact list is empty, show firstUseText
-        if (contactList.isEmpty()) {
-            binding.firstUseText.visibility = View.VISIBLE
-        }
-    }*/
 }
