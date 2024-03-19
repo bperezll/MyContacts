@@ -149,10 +149,19 @@ class HomeActivity : AppCompatActivity() {
                 val contactPhone = addContactBinding.contactPhoneEditText.editableText.toString()
                 val contactEmail = addContactBinding.contactEmailEditText.editableText.toString()
 
-                // Controlling that name and phone fields are not empty
-                if (contactName.isNotEmpty() && contactPhone.isNotEmpty()) {
+                // Controlling that name and phone fields are mandatory
+                if (contactName.isEmpty()) {
+                    addContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
+                } else if(contactPhone.isEmpty()) {
+                    addContactBinding.contactPhoneEditText.error = getString(R.string.contact_phone_error)
 
-                    // Add any of the fields added
+                // If email is added, but is not a valid email format, send error
+                } else if(contactEmail.isNotEmpty() && !Patterns.EMAIL_ADDRESS.matcher(contactEmail).matches()) {
+                        addContactBinding.contactEmailEditText.error = getString(R.string.contact_email_error)
+
+                } else {
+
+                    // Add any of the fields added on the form
                     val contact = Contact(-1, contactName, contactPhone, contactEmail)
                     contactDAO.insert(contact)
 
@@ -161,18 +170,6 @@ class HomeActivity : AppCompatActivity() {
                     contactAdapter.updateItems(contactList)
 
                     alertDialog.dismiss()
-
-                } else {
-                    if(contactName.isEmpty())
-                        addContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
-                    if(contactPhone.isEmpty())
-                        addContactBinding.contactPhoneEditText.error = getString(R.string.contact_phone_error)
-                    /*if(contactEmail.isNotEmpty()) {
-                        fun CharSequence?.isValidEmail(b: Boolean) =
-                            !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
-                        contactEmail.isValidEmail(false)
-                        addContactBinding.contactEmailEditText.error = "Fill a valid email address"
-                    }*/
                 }
             }
         }
@@ -207,22 +204,27 @@ class HomeActivity : AppCompatActivity() {
             val contactPhone = editContactBinding.contactPhoneEditText.text.toString()
             val contactEmail = editContactBinding.contactEmailEditText.text.toString()
 
-            if (contactName.isNotEmpty() && contactPhone.isNotEmpty()) {
+            // Controlling that name and phone fields are mandatory
+            if (contactName.isEmpty()) {
+                editContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
+            } else if(contactPhone.isEmpty()) {
+                editContactBinding.contactPhoneEditText.error = getString(R.string.contact_phone_error)
+
+            // If email is added, but is not a valid email format, send error
+            } else if(contactEmail.isNotEmpty() && !Patterns.EMAIL_ADDRESS.matcher(contactEmail).matches()) {
+                editContactBinding.contactEmailEditText.error = getString(R.string.contact_email_error)
+
+            } else {
+
+                // Apply the changes on fields if any
                 contact.name = contactName
                 contact.phone = contactPhone
                 contact.email = contactEmail
 
+                // Update the contact on database
                 contactDAO.update(contact)
                 contactAdapter.notifyItemChanged(position)
                 alertDialog.dismiss()
-
-            } else {
-                if(contactName.isEmpty()) {
-                    editContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
-                }
-                if(contactPhone.isEmpty()) {
-                    editContactBinding.contactPhoneEditText.error = getString(R.string.contact_phone_error)
-                }
             }
         }
     }
