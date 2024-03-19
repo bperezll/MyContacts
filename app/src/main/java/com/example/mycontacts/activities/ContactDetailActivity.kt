@@ -1,20 +1,12 @@
 package com.example.mycontacts.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
-import com.example.mycontacts.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mycontacts.databinding.ActivityContactDetailBinding
-import com.example.mycontacts.databinding.ItemContactBinding
-import com.example.mycontacts.models.contact.Contact
-import com.example.mycontacts.models.contact.Contact.Companion.COLUMN_NAMES
-import com.example.mycontacts.models.contact.ContactDAO
 import com.example.mycontacts.shared.SharedFunctions
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ContactDetailActivity : AppCompatActivity() {
 
@@ -27,12 +19,14 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityContactDetailBinding // View Binding declaration
-    private lateinit var itemContactBinding: ItemContactBinding // View Binding declaration
-    private lateinit var contact:Contact // Contact model declaration
+    //private lateinit var itemContactBinding: ItemContactBinding // View Binding declaration
+    //private lateinit var contact:Contact // Contact model declaration
     private var contactId:String? = null //
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        ////setTitle(contact.name)
+
+        // Set title to null
+        ////setTitle(binding.nameTextView.text)
 
         // Show back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -86,10 +80,8 @@ class ContactDetailActivity : AppCompatActivity() {
 
         //findContactById(contactId!!)
 
-        // View itemContactBinding initialization
-        itemContactBinding = ItemContactBinding.inflate(layoutInflater)
-        val itemContactView = binding.root
-        setContentView(itemContactView)
+        // Set the menu title to the contact name
+        supportActionBar?.title = binding.nameTextView.text
 
         SharedFunctions().nameInitials(name!!, binding)
     }
