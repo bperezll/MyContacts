@@ -3,12 +3,15 @@ package com.example.mycontacts.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import com.example.mycontacts.R
 import com.example.mycontacts.databinding.ActivityContactDetailBinding
-import com.example.mycontacts.databinding.ActivityHomeBinding
+import com.example.mycontacts.databinding.ItemContactBinding
 import com.example.mycontacts.models.contact.Contact
 import com.example.mycontacts.models.contact.Contact.Companion.COLUMN_NAMES
 import com.example.mycontacts.models.contact.ContactDAO
+import com.example.mycontacts.shared.SharedFunctions
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,8 +27,33 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityContactDetailBinding // View Binding declaration
+    private lateinit var itemContactBinding: ItemContactBinding // View Binding declaration
     private lateinit var contact:Contact // Contact model declaration
     private var contactId:String? = null //
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        //menuInflater.inflate(R.menu.detail_menu, menu)
+
+        // Show back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        // This event will enable the back function to the button on press
+
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +67,7 @@ class ContactDetailActivity : AppCompatActivity() {
     }
     private fun initView() {
 
+        ////contact.name = contact.toString()
         // Get the ID of the contact, only intent needed
         contactId = intent.getStringExtra(EXTRA_ID)
 
@@ -59,28 +88,22 @@ class ContactDetailActivity : AppCompatActivity() {
         binding.phoneTextView.text = phone
         binding.emailTextView.text = email
 
+        //SharedFunctions().nameInitials(contact, itemContactBinding)
+
         //contact = Contact(contactId!!, name, phone, email)
 
         //findContactById(contactId!!)
 
     }
 
-    private fun findContactById(contactId: String) {
+    /*fun nameInitials() {
 
-
-        ////binding.nameTextView.text = contact.name
-        ////binding.phoneTextView.text = contact.phone
-        ////binding.emailTextView.text = contact.email
-        //// Load the fields and options on the contact detail page. On development
-        //binding.progress.visibility = View.GONE
-        /*if (response.body() != null) {
-            Log.i("HTTP", "respuesta correcta :)")
-            superhero = response.body()!!
-            binding.superheroNameTextView.text = superhero.name
-            binding.superheroFirstAppearanceTextView.text = superhero.biography.firstAppearance
-            binding.superheroPublisherTextView.text = superhero.biography.publisher
-        } else {
-            Log.i("HTTP", "respuesta erronea :(")
-        }*/
-    }
+        contact =
+        // Get first char of the first and the second word if any
+        val firstNameInitial = contact.name.firstOrNull()?.toString() ?: ""
+        val secondNameInitial =
+            contact.name.split(" ").getOrNull(1)?.firstOrNull()?.toString() ?: ""
+        val initials = "$firstNameInitial$secondNameInitial"
+        binding.nameInitials.text = initials*/
+    //}
 }

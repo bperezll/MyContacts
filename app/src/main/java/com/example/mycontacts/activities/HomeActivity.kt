@@ -3,6 +3,7 @@ package com.example.mycontacts.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -166,6 +167,12 @@ class HomeActivity : AppCompatActivity() {
                         addContactBinding.contactNameEditText.error = getString(R.string.contact_name_error)
                     if(contactPhone.isEmpty())
                         addContactBinding.contactPhoneEditText.error = getString(R.string.contact_phone_error)
+                    /*if(contactEmail.isNotEmpty()) {
+                        fun CharSequence?.isValidEmail(b: Boolean) =
+                            !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+                        contactEmail.isValidEmail(false)
+                        addContactBinding.contactEmailEditText.error = "Fill a valid email address"
+                    }*/
                 }
             }
         }

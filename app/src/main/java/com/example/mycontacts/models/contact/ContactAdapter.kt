@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacts.databinding.ItemContactBinding
+import com.example.mycontacts.shared.SharedFunctions
 
 class ContactAdapter(
     var items: MutableList<Contact> = mutableListOf(),
@@ -37,6 +38,7 @@ class ContactAdapter(
             binding.contactName.text = contact.name
             binding.contactPhone.text = contact.phone
 
+            //SharedFunctions().nameInitials()
             // Get first char of the first and the second word if any
             val firstNameInitial = contact.name.firstOrNull()?.toString() ?: ""
             val secondNameInitial = contact.name.split(" ").getOrNull(1)?.firstOrNull()?.toString() ?: ""
