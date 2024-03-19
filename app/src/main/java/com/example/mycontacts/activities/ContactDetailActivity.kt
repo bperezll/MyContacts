@@ -2,7 +2,6 @@ package com.example.mycontacts.activities
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mycontacts.databinding.ActivityContactDetailBinding
@@ -75,10 +74,6 @@ class ContactDetailActivity : AppCompatActivity() {
         binding.nameTextView.text = name
         binding.phoneTextView.text = phone
         binding.emailTextView.text = email
-
-        //contact = Contact(contactId!!, name, phone, email)
-
-        //findContactById(contactId!!)
 
         // Set the menu title to the contact name
         supportActionBar?.title = binding.nameTextView.text
