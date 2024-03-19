@@ -7,6 +7,7 @@ import android.util.Patterns
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -169,6 +170,11 @@ class HomeActivity : AppCompatActivity() {
                     contactList = contactDAO.findAll()
                     contactAdapter.updateItems(contactList)
 
+                    // Contacts on app makes firstUseText gone
+                    if (contactList.isNotEmpty()) {
+                        binding.firstUseText.visibility = View.GONE
+                    }
+
                     alertDialog.dismiss()
                 }
             }
@@ -247,6 +253,11 @@ class HomeActivity : AppCompatActivity() {
             contactDAO.delete(contact)
             contactList.removeAt(position)
             contactAdapter.notifyDataSetChanged()
+
+            // If contact list is empty, show firstUseText
+            if (contactList.isEmpty()) {
+                binding.firstUseText.visibility = View.VISIBLE
+            }
         }
 
         // Cancel button
@@ -272,4 +283,13 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra("CONTACT_EMAIL", contact.email)
         startActivity(intent)
     }
+
+    /*override fun onResume() {
+        super.onResume()
+
+        // If contact list is empty, show firstUseText
+        if (contactList.isEmpty()) {
+            binding.firstUseText.visibility = View.VISIBLE
+        }
+    }*/
 }
