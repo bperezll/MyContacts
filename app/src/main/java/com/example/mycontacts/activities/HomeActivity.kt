@@ -235,6 +235,8 @@ class HomeActivity : AppCompatActivity() {
         val deleteMessageBinding: DialogDeleteContactBinding = DialogDeleteContactBinding.inflate(layoutInflater)
         askForDeleteDialog.setView(deleteMessageBinding.root)
 
+        askForDeleteDialog.setTitle(R.string.remove_contact_title)
+
         // Remove contact button
         askForDeleteDialog.setPositiveButton(R.string.remove_contact) { _, _ ->
 
