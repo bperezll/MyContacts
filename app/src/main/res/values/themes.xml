@@ -13,4 +13,20 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Screen background -->
+    <style name="SCREEN">
+        <item name="android:background">#FFF</item>
+    </style>
+
+    <!-- Text color -->
+    <style name="TEXT">
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+    <!-- Button background and text color -->
+    <style name="BUTTON">
+        <item name="android:background">#FFF</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
 </resources>
