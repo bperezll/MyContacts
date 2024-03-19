@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mycontacts.R
 import com.example.mycontacts.databinding.ActivitySettingsBinding
 import com.example.mycontacts.shared.SharedFunctions
 import com.example.mycontacts.utils.SessionManager
-
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -15,8 +15,9 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var session: SessionManager // Session Manager declaration
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //menuInflater.inflate(R.menu.detail_menu, menu)
+
+        // Setting the title of the Settings menu bar
+        setTitle(R.string.btn_settings)
 
         // Show back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
