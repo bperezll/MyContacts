@@ -1,6 +1,7 @@
 package com.example.mycontacts.shared
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.mycontacts.databinding.ActivityContactDetailBinding
 import com.example.mycontacts.databinding.ItemContactBinding
 import com.example.mycontacts.models.contact.Contact
 
@@ -12,13 +13,13 @@ class SharedFunctions {
         AppCompatDelegate.setDefaultNightMode(mode)
     }
 
-    fun nameInitials(contact: Contact, binding: ItemContactBinding) {
+    fun nameInitials(contactName: CharSequence, binding: ActivityContactDetailBinding) {
 
 
 
         // Get first char of the first and the second word if any
-        val firstNameInitial = contact.name.firstOrNull()?.toString() ?: ""
-        val secondNameInitial = contact.name.split(" ").getOrNull(1)?.firstOrNull()?.toString() ?: ""
+        val firstNameInitial = contactName.firstOrNull()?.toString() ?: ""
+        val secondNameInitial = contactName.split(" ").getOrNull(1)?.firstOrNull()?.toString() ?: ""
         val initials = "$firstNameInitial$secondNameInitial"
         binding.nameInitials.text = initials
     }

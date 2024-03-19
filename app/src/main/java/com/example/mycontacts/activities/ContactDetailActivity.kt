@@ -32,8 +32,7 @@ class ContactDetailActivity : AppCompatActivity() {
     private var contactId:String? = null //
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //menuInflater.inflate(R.menu.detail_menu, menu)
+        ////setTitle(contact.name)
 
         // Show back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -67,16 +66,11 @@ class ContactDetailActivity : AppCompatActivity() {
     }
     private fun initView() {
 
-        ////contact.name = contact.toString()
         // Get the ID of the contact, only intent needed
         contactId = intent.getStringExtra(EXTRA_ID)
 
         //contact = Contact(contactId!!.toInt(), contact.name, contact.phone, contact.email)
-
-        //val contactDAO = ContactDAO(this)
-        //contact = contactDAO.find(contactId!!.toInt())!!
-
-        //horoscope = HoroscopeProvider().getHoroscope(horoscopeId!!)
+        //contact = Contact(contact.id, contact.name, contact.phone, contact.email)
         //contact = mutableListOf(Contact).[contactId!!]
 
         // Display contact fields
@@ -88,22 +82,24 @@ class ContactDetailActivity : AppCompatActivity() {
         binding.phoneTextView.text = phone
         binding.emailTextView.text = email
 
-        //SharedFunctions().nameInitials(contact, itemContactBinding)
-
         //contact = Contact(contactId!!, name, phone, email)
 
         //findContactById(contactId!!)
 
+        // View itemContactBinding initialization
+        itemContactBinding = ItemContactBinding.inflate(layoutInflater)
+        val itemContactView = binding.root
+        setContentView(itemContactView)
+
+        SharedFunctions().nameInitials(name!!, binding)
     }
 
-    /*fun nameInitials() {
-
-        contact =
+    fun nameInitials() {
         // Get first char of the first and the second word if any
-        val firstNameInitial = contact.name.firstOrNull()?.toString() ?: ""
+        val firstNameInitial = binding.nameTextView.text.firstOrNull()?.toString() ?: ""
         val secondNameInitial =
-            contact.name.split(" ").getOrNull(1)?.firstOrNull()?.toString() ?: ""
+            binding.nameTextView.text.split(" ").getOrNull(1)?.firstOrNull()?.toString() ?: ""
         val initials = "$firstNameInitial$secondNameInitial"
-        binding.nameInitials.text = initials*/
-    //}
+        binding.nameInitials.text = initials
+    }
 }
