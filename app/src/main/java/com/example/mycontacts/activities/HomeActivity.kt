@@ -91,6 +91,11 @@ class HomeActivity : AppCompatActivity() {
         contactList = contactDAO.findAll()
         contactAdapter.updateItems(contactList)
 
+        // Contacts on app makes firstUseText gone
+        if (contactList.isNotEmpty()) {
+            binding.firstUseText.visibility = View.GONE
+        }
+
         searchContact()
         addContactDialog()
     }
