@@ -44,6 +44,7 @@
 
 ## Funcionalidades adicionales
 - Buscador en HomeActivity en modo onQueryTextChange
+- Al no haber contactos sale mensaje de añadir tu primer contacto, que desaparece al añadir uno y solo reaparece si se borran todos los contactos
 - Al añadir o editar contactos, el nombre es obligatorio y capitaliza las palabras
 - Tanto en la lista de HomeActivity como en el ContactDetailActivity, Sobre un círculo aparece la letra inicial del nombre, y la del apellido si existiera
 - Al añadir o editar contactos, el teléfono es obligatorio y se restringe a números y el carácter +
