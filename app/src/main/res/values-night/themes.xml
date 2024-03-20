@@ -41,6 +41,11 @@
         <item name="cardBackgroundColor">#DCDCDC</item>
     </style>
 
+    <!-- Text color -->
+    <style name="STROKE">
+        <item name="strokeColor">#727272</item>
+    </style>
+
     <!-- Button background and text color -->
     <style name="INITIALS">
         <item name="android:textColor">#727272</item>
