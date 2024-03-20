@@ -3,7 +3,7 @@
     <string name="first_use_text">Add your first contact</string>
     <string name="btn_settings">Settings</string>
     <string name="switch_theme_title">Theme</string>
-    <string name="switch_theme_text">Use the application theme switcher to change between Light and Dark</string>
+    <string name="switch_theme_text">Use the application theme switcher to change between Day and Night mode</string>
     <string name="settings_switch_theme">Switch theme</string>
     <string name="add_contact">Add contact</string>
     <string name="edit_contact">Edit contact</string>
