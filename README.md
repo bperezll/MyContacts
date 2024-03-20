@@ -47,4 +47,4 @@
 - Al añadir o editar contactos, el nombre es obligatorio y capitaliza las palabras
 - Tanto en la lista de HomeActivity como en el ContactDetailActivity, Sobre un círculo aparece la letra inicial del nombre, y la del apellido si existiera
 - Al añadir o editar contactos, el teléfono es obligatorio y se restringe a números y el carácter +
-- Al añadir o editar contactos, el email no es obligatorio, pero comprueba que es un email válido
+- Al añadir o editar contactos, el email no es obligatorio, pero comprueba que es un email válido en caso de añadirlo
