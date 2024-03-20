@@ -10,14 +10,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/light_grey"
+        style="@style/DARK_BACKGROUND"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/initialNameChar"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:cardBackgroundColor="@color/light_grey"
+        style="@style/LIGHT"
         app:cardCornerRadius="30dp"
         android:shape="ring"
         android:layout_marginVertical="12dp"
@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="BP"
+            style="@style/INITIALS"
             android:textSize="22sp"
             android:layout_gravity="center" />
 
@@ -53,7 +54,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginStart="10dp"
-            android:textColor="@color/my_black" />
+            style="@style/DARK" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/contactPhone"
@@ -61,7 +62,7 @@
             android:layout_height="wrap_content"
             tools:text="Teléfono del contacto"
             android:layout_marginStart="10dp"
-            android:textColor="@color/my_black"/>
+            style="@style/DARK"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -77,7 +78,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="4dp"
-            app:cardBackgroundColor="@color/my_black"
+            style="@style/BUTTON"
             app:cardCornerRadius="24dp"
             android:shape="ring">
 
@@ -92,7 +93,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:src="@drawable/ic_edit"
-                android:tint="@color/light_grey"
+                style="@style/BUTTON"
                 android:layout_gravity="center"/>
 
         </com.google.android.material.card.MaterialCardView>
@@ -100,7 +101,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="48dp"
             android:layout_height="48dp"
-            app:cardBackgroundColor="@color/my_black"
+            style="@style/BUTTON"
             app:cardCornerRadius="24dp"
             android:shape="ring">
 
@@ -115,7 +116,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:src="@drawable/ic_delete"
-                android:tint="@color/light_grey"
+                style="@style/BUTTON"
                 android:layout_gravity="center"/>
 
         </com.google.android.material.card.MaterialCardView>

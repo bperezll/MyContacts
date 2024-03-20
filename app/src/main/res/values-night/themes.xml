@@ -13,4 +13,36 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Screen background -->
+    <style name="SCREEN">
+        <item name="android:background">#FFF</item>
+    </style>
+
+    <!-- Text color -->
+    <style name="DARK">
+        <item name="android:textColor">#DCDCDC</item>
+    </style>
+
+    <!-- Text color -->
+    <style name="DARK_BACKGROUND">
+        <item name="android:background">#DCDCDC</item>
+    </style>
+
+    <!-- Text color -->
+    <style name="BUTTON">
+        <item name="cardBackgroundColor">#DCDCDC</item>
+        <item name="android:tint">#727272</item>
+    </style>
+
+    <!-- Text color -->
+    <style name="LIGHT">
+        <item name="android:textColor">#DCDCDC</item>
+        <item name="cardBackgroundColor">#DCDCDC</item>
+    </style>
+
+    <!-- Button background and text color -->
+    <style name="INITIALS">
+        <item name="android:textColor">#727272</item>
+    </style>
 </resources>
