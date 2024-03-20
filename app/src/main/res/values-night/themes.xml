@@ -36,6 +36,11 @@
     </style>
 
     <!-- Text color -->
+    <style name="ICON">
+        <item name="android:tint">#FFF</item>
+    </style>
+
+    <!-- Text color -->
     <style name="LIGHT">
         <item name="android:textColor">#DCDCDC</item>
         <item name="cardBackgroundColor">#DCDCDC</item>
